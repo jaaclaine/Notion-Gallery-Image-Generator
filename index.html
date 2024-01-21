@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notion Header Image Generator</title>
+  <link rel="stylesheet" href="css/style.css">
+
+  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+  <script src="js/script.js" defer></script>
+</head>
+
+<body>
+
+  <section id="colors">
+    Colors: <br>
+  </section>
+
+  <section id="byupload">
+    by upload
+    <br>
+    <span class="dragBox">
+      Darg and Drop image here
+      <input type="file" onChange="dragNdrop(event)" ondragover="drag()" ondrop="drop()" id="uploadFile" />
+    </span>
+  </section>
+
+  <section id="byurl">
+    by url
+    <form>
+      <input type="text" placeholder="Url da imagem" id="theURL">
+    </form>
+  </section>
+
+  <section id="canva">
+    <div class="canva__blur">
+    </div>
+    <img src="/doyoung.jpg" alt="" id="imageURL">
+  </section>
+
+  <br>
+  https://64.media.tumblr.com/50dbc7e0868cb616ac06520f8a760de4/aee5ccf9e8ffdb92-97/s1280x1920/95f8b6fb537e987b139f00bc2d9aeb8338416dbd.jpg
+  <br>
+
+  result:
+  <div id="resultIMG"></div>
+
+  <footer>
+    <a href="https://codepen.io/weilinzung/pen/VXzEaN">DOM to Image</a> |
+    <a href="https://lokeshdhakar.com/projects/color-thief">Color Thief</a>
+  </footer>
+
+</body>
+
+</html>

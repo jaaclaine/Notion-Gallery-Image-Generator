@@ -1,0 +1,51 @@
+img {
+}
+
+#imageURL {
+  position: relative;
+  max-width: 300px;
+  border: 1px solid #000;
+  z-index: 1;
+}
+
+.dragBox {
+  width: 250px;
+  height: 100px;
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+  font-weight: bold;
+  line-height: 95px;
+  color: #999;
+  border: 2px dashed #ccc;
+  display: inline-block;
+  transition: transform 0.3s;
+}
+
+input[type="file"] {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  top: 0;
+  left: 0;
+}
+
+#canva {
+  position: relative;
+  padding: 50px 0;
+  text-align: center;
+}
+
+.canva__blur {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  -webkit-filter: blur(0.5em);
+  filter: blur(0.5em);
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
