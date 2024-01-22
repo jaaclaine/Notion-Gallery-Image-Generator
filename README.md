@@ -1,2 +1,3 @@
 # Notion-Gallery-Image-Generator
-Notion gallery image generator
+
+Gerador de imagens para padronizar o header do notion
