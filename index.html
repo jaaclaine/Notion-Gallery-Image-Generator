@@ -7,6 +7,7 @@
   <title>Notion Header Image Generator</title>
   <link rel="stylesheet" href="css/style.css">
 
+  <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://code.jquery.com/jquery-latest.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
@@ -15,40 +16,68 @@
 
 <body>
 
-  <section id="colors">
-    Colors: <br>
+  <header class="text-center">
+    Notion header generator
+  </header>
+
+  <section class="flex items-center w-4/5 mx-auto text-center">
+
+    <!-- Upload de imagem -->
+    <div id="upload" class="grow">
+      Upload <br>
+      <span class="dragBox">
+        Darg and Drop image here
+        <input type="file" onChange="dragNdrop(event)" ondragover="drag()" ondrop="drop()" id="uploadFile" />
+      </span>
+    </div>
+
+    <div>
+      Ou
+    </div>
+
+    <!-- URL da imagem -->
+    <div id="url" class="grow">
+      URL
+      <form>
+        <input type="text" placeholder="Url da imagem" class="url__input text-center">
+      </form>
+    </div>
+
   </section>
 
-  <section id="byupload">
-    by upload
-    <br>
-    <span class="dragBox">
-      Darg and Drop image here
-      <input type="file" onChange="dragNdrop(event)" ondragover="drag()" ondrop="drop()" id="uploadFile" />
-    </span>
-  </section>
-
-  <section id="byurl">
-    by url
+  <!-- Paleta de cores -->
+  <section class="text-center">
+    Escolha a cor:
+    <div class="colors__result flex items-center justify-center"></div>
     <form>
-      <input type="text" placeholder="Url da imagem" id="theURL">
+      <label>
+        <input type="checkbox" class="option__image"> Imagem no fundo
+      </label>
     </form>
   </section>
 
-  <section id="canva">
-    <div class="canva__blur">
+  <!-- HTML da imagem a ser gerada -->
+  <section class="mx-auto w-[1500px]">
+    <div id="canva">
+      <div class="canva__blur hidden">
+      </div>
+      <img src="/doyoung.jpg" alt="" class="canva__image block mx-auto">
     </div>
-    <img src="/doyoung.jpg" alt="" id="imageURL">
   </section>
 
-  <br>
-  https://64.media.tumblr.com/50dbc7e0868cb616ac06520f8a760de4/aee5ccf9e8ffdb92-97/s1280x1920/95f8b6fb537e987b139f00bc2d9aeb8338416dbd.jpg
-  <br>
+  <!-- Imagem gerada -->
+  <div class="text-center">
+    <button class="gerar__img__btn">
+      Gerar imagem
+    </button> <br>
+    Resultado da imagem:
+  </div>
+  <div class="image__result"></div>
+  <button class="download__img__btn">
+    Download Imagem
+  </button>
 
-  result:
-  <div id="resultIMG"></div>
-
-  <footer>
+  <footer class="text-center py-2">
     <a href="https://codepen.io/weilinzung/pen/VXzEaN">DOM to Image</a> |
     <a href="https://lokeshdhakar.com/projects/color-thief">Color Thief</a>
   </footer>

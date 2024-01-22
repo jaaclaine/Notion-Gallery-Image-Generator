@@ -1,9 +1,13 @@
 const colorThief = new ColorThief();
-const img = document.querySelector("#imageURL");
-const colorResult = document.querySelector("#colors");
-const getURL = document.querySelector("#theURL");
+const img = document.querySelector(".canva__image");
+const colorResult = document.querySelector(".colors__result");
+const getURL = document.querySelector(".url__input");
+const imageResult = document.querySelector(".image__result");
+const canva = document.querySelector("#canva");
+const canvaBackgroundImagem = document.querySelector(".canva__blur");
+const colorItem = document.querySelectorAll(".colors__item");
 
-//RGB to HEX
+// Converter RGB to HEX
 const rgbToHex = (r, g, b) =>
   "#" +
   [r, g, b]
@@ -17,14 +21,11 @@ const rgbToHex = (r, g, b) =>
 function gerarCor() {
   colorResult.insertAdjacentHTML(
     "beforeend",
-    `<div style='background: rgb(${colorThief.getColor(img)})'>
-    Cor principal:
-    ${rgbToHex(
-      colorThief.getColor(img)[0],
-      colorThief.getColor(img)[1],
-      colorThief.getColor(img)[2]
-    )}</div>`
+    `<div class='colors__item rounded-full mx-1.5' style='background: rgb(${colorThief.getColor(
+      img
+    )})'></div>`
   );
+  canva.style.background = `rgb(${colorThief.getColor(img)})`;
 }
 
 // Gerar paleta
@@ -33,12 +34,14 @@ function gerarPaleta() {
     let hex = rgbToHex(rgb[0], rgb[1], rgb[2]);
     colorResult.insertAdjacentHTML(
       "beforeend",
-      `<div style='background: ${hex}'>${hex}</div>`
+      `<div class='colors__item rounded-full mx-1.5' style='background: ${hex}'
+      onClick="mudarCor('${hex}')"'
+      ></div>`
     );
   });
 }
 
-// Pra usar imagens de fora do domínio
+// Usar imagens de fora do domínio
 function replaceImg(url) {
   let googleProxyURL =
     "https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&refresh=2592000&url=";
@@ -47,13 +50,14 @@ function replaceImg(url) {
 }
 
 // Escuta mudanças no input
-getURL.addEventListener("change", () => {
+getURL.addEventListener("input", () => {
   const newImg = getURL.value;
   if (newImg !== "") {
     replaceImg(newImg);
   }
 });
 
+// Executa os geradores
 img.addEventListener("load", () => {
   colorResult.innerHTML = "";
   document.querySelector(
@@ -61,8 +65,9 @@ img.addEventListener("load", () => {
   ).style.backgroundImage = `url(${img.src})`;
   gerarCor();
   gerarPaleta();
-  gerarImagem();
 });
+gerarCor();
+gerarPaleta();
 
 // Drag and drop
 function dragNdrop(event) {
@@ -71,27 +76,51 @@ function dragNdrop(event) {
 }
 
 function drag() {
-  document.getElementById("uploadFile").parentNode.className =
+  document.getElementById("uploadFile").parentcanva.className =
     "draging dragBox";
 }
 function drop() {
-  document.getElementById("uploadFile").parentNode.className = "dragBox";
+  document.getElementById("uploadFile").parentcanva.className = "dragBox";
 }
 
-// Canvas
-const node = document.querySelector("#canva");
+//Background image
+const checkbox = document.querySelector(".option__image");
+checkbox.addEventListener("change", () => {
+  if (checkbox.checked) {
+    canvaBackgroundImagem.classList.remove("hidden");
+  } else {
+    canvaBackgroundImagem.classList.add("hidden");
+  }
+});
 
-// domtoimage.toPng(node)
+// domtoimage.toPng(canva)
 function gerarImagem() {
-  document.querySelector("#resultIMG").innerHTML = "";
+  imageResult.innerHTML = "";
   domtoimage
-    .toPng(node)
+    .toPng(canva)
     .then(function (dataUrl) {
       const imagem = new Image();
       imagem.src = dataUrl;
-      document.querySelector("#resultIMG").appendChild(imagem);
+      imageResult.appendChild(imagem);
     })
     .catch(function (error) {
       console.error("oops, something went wrong!", error);
     });
+}
+
+//domtoimage
+document.querySelector(".download__img__btn").addEventListener("click", () => {
+  domtoimage.toBlob(imageResult).then(function (blob) {
+    window.saveAs(blob, "my-node.png");
+  });
+});
+
+//Botão geradar
+document.querySelector(".gerar__img__btn").addEventListener("click", () => {
+  gerarImagem();
+});
+
+// Mudar cor do canva
+function mudarCor(item) {
+  canva.style.background = item;
 }

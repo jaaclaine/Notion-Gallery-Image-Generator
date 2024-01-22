@@ -1,13 +1,48 @@
-img {
+/* Canva */
+#canva {
+  position: relative;
+  padding: 20px 0;
+  width: 1500px;
+  height: 600px;
+  overflow: hidden;
 }
 
-#imageURL {
+.canva__blur {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  -webkit-filter: blur(0.5em);
+  filter: blur(0.5em);
+  background-image: url(/doyoung.jpg);
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+.canva__image {
   position: relative;
   max-width: 300px;
-  border: 1px solid #000;
+  height: 100%;
+  max-height: 100%;
+  width: auto;
+  max-width: 100%;
   z-index: 1;
 }
 
+/* Paleta de cores */
+.colors__item {
+  height: 30px;
+  width: 30px;
+}
+
+.colors__item:first-of-type {
+  height: 50px;
+  width: 50px;
+}
+
+/* Drag and Drop input */
 .dragBox {
   width: 250px;
   height: 100px;
@@ -31,21 +66,8 @@ input[type="file"] {
   left: 0;
 }
 
-#canva {
-  position: relative;
-  padding: 50px 0;
-  text-align: center;
-}
-
-.canva__blur {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  -webkit-filter: blur(0.5em);
-  filter: blur(0.5em);
-  background-size: cover;
-  background-position: center;
-  z-index: 0;
+/* Resultado da Imagem */
+.image__result img {
+  display: block;
+  margin: 0 auto;
 }
