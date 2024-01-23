@@ -135,13 +135,6 @@ function gerarImagem() {
     });
 }
 
-//domtoimage
-document.querySelector(".download__img__btn").addEventListener("click", () => {
-  domtoimage.toBlob(imageResult).then(function (blob) {
-    window.saveAs(blob, "my-node.png");
-  });
-});
-
 //Botão geradar
 document.querySelector(".gerar__img__btn").addEventListener("click", () => {
   document.querySelector(".final__image").classList.remove("hidden");
