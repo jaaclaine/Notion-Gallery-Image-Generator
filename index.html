@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Notion Header Image Generator</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://code.jquery.com/jquery-latest.min.js"></script>
@@ -16,70 +17,84 @@
 
 <body>
 
-  <header class="text-center">
-    Notion header generator
-  </header>
+  <main class="px-6">
 
-  <section class="flex items-center w-4/5 mx-auto text-center">
+    <h1 class="text-center text-6xl my-9 font-thin">
+      Notion header generator
+    </h1>
 
-    <!-- Upload de imagem -->
-    <div id="upload" class="grow">
-      Upload <br>
-      <span class="dragBox">
-        Darg and Drop image here
-        <input type="file" onChange="dragNdrop(event)" ondragover="drag()" ondrop="drop()" id="uploadFile" />
-      </span>
-    </div>
+    <p class="text-center">
+      Example of galery:
+      <img src="./img/_example.png" alt="" class="block mx-auto w-2/3 mb-12">
+    </p>
 
-    <div>
-      Ou
-    </div>
-
-    <!-- URL da imagem -->
-    <div id="url" class="grow">
-      URL
-      <form>
-        <input type="text" placeholder="Url da imagem" class="url__input text-center">
-      </form>
-    </div>
-
-  </section>
-
-  <!-- Paleta de cores -->
-  <section class="text-center">
-    Escolha a cor:
-    <div class="colors__result flex items-center justify-center"></div>
-    <form>
-      <label>
-        <input type="checkbox" class="option__image"> Imagem no fundo
-      </label>
-    </form>
-  </section>
-
-  <!-- HTML da imagem a ser gerada -->
-  <section class="mx-auto w-[1500px]">
-    <div id="canva">
-      <div class="canva__blur hidden">
+    <section class="flex items-center w-4/5 mx-auto text-center">
+      <!-- Upload de imagem -->
+      <div id="upload" class="grow">
+        <b>By upload</b> <br>
+        <span class="dragBox">
+          Drag and Drop image here
+          <input type="file" onChange="dragNdrop(event)" ondragover="drag()" ondrop="drop()" id="uploadFile" />
+        </span>
       </div>
-      <img src="./doyoung.jpg" alt="" class="canva__image block mx-auto">
-    </div>
-  </section>
+      <div>
+        Ou
+      </div>
+      <!-- URL da imagem -->
+      <div id="url" class="grow">
+        <b>By url</b> <br>
+        <form>
+          <input type="text" placeholder="Paste image url here" class="url__input text-center p-2">
+        </form>
+      </div>
+    </section>
 
-  <!-- Imagem gerada -->
-  <div class="text-center">
-    <button class="gerar__img__btn">
-      Gerar imagem
-    </button> <br>
-    Resultado da imagem:
-  </div>
-  <div class="image__result"></div>
-  <button class="download__img__btn">
-    Download Imagem
-  </button>
+    <!-- Paleta de cores -->
+    <section class="text-center py-12">
+      Pick a color:
+      <div class="colors__result flex items-center justify-center"></div>
+      <form>
+        <label class="px-4">
+          <input type="checkbox" class="option__image"> Background image
+        </label>
+        <label class="px-4">
+          <input type="checkbox" class="option__border"> Border
+        </label>
+      </form>
+    </section>
 
-  <footer class="text-center py-2">
+    <!-- HTML da imagem a ser gerada -->
+    <section class="canva__container flex max-w-full overflow-x-scroll overflow-y-hidden">
+      <div class="mx-auto w-[1500px]">
+        <div id="canva">
+          <div class="canva__blur__container hidden">
+            <div class="canva__blur"></div>
+          </div>
+          <img src="" alt="" class="canva__image block mx-auto">
+        </div>
+      </div>
+    </section>
+
+    <section class="text-center">
+      <button class="gerar__img__btn my-12 px-12 py-4 rounded-md bg-gray-950 text-white">
+        Generate
+      </button>
+      <div class="final__image hidden">
+        <!-- Imagem gerada -->
+        <h2 class="text-center text-xl mb-6">Result:</h2>
+        <div class="image__result"></div>
+        <button class="download__img__btn mt-6 mb-12 px-12 py-4 rounded-md bg-gray-950 text-white">
+          Download
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="text-center py-2  bg-gray-950 text-white">
     <a href="https://codepen.io/weilinzung/pen/VXzEaN">DOM to Image</a> |
-    <a href="https://lokeshdhakar.com/projects/color-thief">Color Thief</a>
+    <a href="https://lokeshdhakar.com/projects/color-thief">Color Thief</a> |
+    <a href="https://github.com/jaaclaine">By jaaclaine</a>
   </footer>
 
 </body>

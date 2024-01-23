@@ -4,8 +4,23 @@ const colorResult = document.querySelector(".colors__result");
 const getURL = document.querySelector(".url__input");
 const imageResult = document.querySelector(".image__result");
 const canva = document.querySelector("#canva");
+const canvaBackgroundContainer = document.querySelector(
+  ".canva__blur__container"
+);
 const canvaBackgroundImagem = document.querySelector(".canva__blur");
 const colorItem = document.querySelectorAll(".colors__item");
+
+// Imagem de exemplo
+const imgExemplo = [
+  "./img/Bring_Me_the_Horizon-Post_Human_Survival_Horror.jpg",
+  "./img/DPR_IAN-Moodswings_in_This_Order.jpg",
+  "./img/EXO-The_War_The_Power_of_Music.jpg",
+  "./img/Interpol-Our_Love_to_Admire.jpg",
+  "./img/Kali_Uchis-Orquideas.jpg",
+  "./img/TWICE-Perfect_World.jpg",
+];
+let imgExemploItem = Math.floor(Math.random() * imgExemplo.length);
+img.src = imgExemplo[imgExemploItem];
 
 // Converter RGB to HEX
 const rgbToHex = (r, g, b) =>
@@ -19,11 +34,16 @@ const rgbToHex = (r, g, b) =>
 
 // Gerar cor principal
 function gerarCor() {
+  let color = colorThief.getColor(img);
   colorResult.insertAdjacentHTML(
     "beforeend",
-    `<div class='colors__item rounded-full mx-1.5' style='background: rgb(${colorThief.getColor(
+    `<div class='colors__item rounded-full mx-1.5 transition cursor-pointer' style='background: rgb(${colorThief.getColor(
       img
-    )})'></div>`
+    )})' onClick="mudarCor('${rgbToHex(
+      color[0],
+      color[1],
+      color[2]
+    )}')">  </div>`
   );
   canva.style.background = `rgb(${colorThief.getColor(img)})`;
 }
@@ -34,7 +54,7 @@ function gerarPaleta() {
     let hex = rgbToHex(rgb[0], rgb[1], rgb[2]);
     colorResult.insertAdjacentHTML(
       "beforeend",
-      `<div class='colors__item rounded-full mx-1.5' style='background: ${hex}'
+      `<div class='colors__item rounded-full mx-1.5 transition cursor-pointer' style='background: ${hex}'
       onClick="mudarCor('${hex}')"'
       ></div>`
     );
@@ -60,14 +80,11 @@ getURL.addEventListener("input", () => {
 // Executa os geradores
 img.addEventListener("load", () => {
   colorResult.innerHTML = "";
-  document.querySelector(
-    ".canva__blur"
-  ).style.backgroundImage = `url(${img.src})`;
+  canvaBackgroundImagem.style.backgroundImage = `url(${img.src})`;
+  canvaBackgroundContainer.style.backgroundImage = `url(${img.src})`;
   gerarCor();
   gerarPaleta();
 });
-gerarCor();
-gerarPaleta();
 
 // Drag and drop
 function dragNdrop(event) {
@@ -84,12 +101,22 @@ function drop() {
 }
 
 //Background image
-const checkbox = document.querySelector(".option__image");
-checkbox.addEventListener("change", () => {
-  if (checkbox.checked) {
-    canvaBackgroundImagem.classList.remove("hidden");
+document.querySelector(".option__image").addEventListener("change", () => {
+  if (document.querySelector(".option__image").checked) {
+    canvaBackgroundContainer.classList.remove("hidden");
   } else {
-    canvaBackgroundImagem.classList.add("hidden");
+    canvaBackgroundContainer.classList.add("hidden");
+  }
+});
+
+//Border image
+document.querySelector(".option__border").addEventListener("change", () => {
+  if (document.querySelector(".option__border").checked) {
+    img.classList.add("border");
+    img.classList.add("border-black");
+  } else {
+    img.classList.remove("border");
+    img.classList.remove("border-black");
   }
 });
 
@@ -117,6 +144,7 @@ document.querySelector(".download__img__btn").addEventListener("click", () => {
 
 //Botão geradar
 document.querySelector(".gerar__img__btn").addEventListener("click", () => {
+  document.querySelector(".final__image").classList.remove("hidden");
   gerarImagem();
 });
 
@@ -124,3 +152,8 @@ document.querySelector(".gerar__img__btn").addEventListener("click", () => {
 function mudarCor(item) {
   canva.style.background = item;
 }
+
+// Manter a imagem no centro
+let valor =
+  (1500 - document.querySelector(".canva__container").clientWidth) / 2;
+document.querySelector(".canva__container").scrollLeft += valor;

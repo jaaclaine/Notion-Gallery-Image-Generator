@@ -1,3 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;800&display=swap");
+
+body {
+  color: #161a1d;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  background: #f7f7f7;
+}
+
 /* Canva */
 #canva {
   position: relative;
@@ -7,14 +16,26 @@
   overflow: hidden;
 }
 
+.canva__blur__container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-image: url(/doyoung.jpg);
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
 .canva__blur {
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
-  -webkit-filter: blur(0.5em);
-  filter: blur(0.5em);
+  -webkit-filter: blur(0.7em);
+  filter: blur(0.7em);
   background-image: url(/doyoung.jpg);
   background-size: cover;
   background-position: center;
@@ -42,15 +63,19 @@
   width: 50px;
 }
 
+.colors__item:hover {
+  border: 2px solid #000;
+}
+
 /* Drag and Drop input */
 .dragBox {
   width: 250px;
-  height: 100px;
+  height: 40px;
   margin: 0 auto;
   position: relative;
   text-align: center;
   font-weight: bold;
-  line-height: 95px;
+  line-height: 35px;
   color: #999;
   border: 2px dashed #ccc;
   display: inline-block;
