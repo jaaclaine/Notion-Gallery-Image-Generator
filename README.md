@@ -6,7 +6,7 @@
 
 Gerador de imagem onde por meio de URL ou upload é gerado uma paleta, onde cada cor é clicável para poder ser utilizada de fundo de uma imagem preenchendo o espaço para deixar visualmente mais agradável. Também há a opção de deixar a própria imagem de fundo e também colocar uma borda para maior destaque. Ao final você pode gerar uma imagem que pode ser salva ou copiada.
 
-## [Preview do gerador na Vercel](https://notion-gallery-image-generator.vercel.app/)
+<h2 align="center"><a href="https://notion-gallery-image-generator.vercel.app/" target="_blank">Preview do gerador na Vercel</a></h2>
 
 ### Exemplo de galeria:
 
